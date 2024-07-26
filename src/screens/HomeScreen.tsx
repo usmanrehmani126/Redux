@@ -1,12 +1,19 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 const HomeScreen = () => {
   const [data, setData] = useState('');
-  const navigation=useNavigation()
- 
+  const navigation = useNavigation();
+
   useEffect(() => {
     const fetchData = async () => {
       const storedData = await AsyncStorage.getItem('userData');
@@ -21,30 +28,38 @@ const HomeScreen = () => {
   }, []);
   const logout = async () => {
     await AsyncStorage.removeItem('userData');
-    navigation.navigate("Login")
+    navigation.navigate('Login');
   };
-  console.log(">>>>>>>>User Data",data)
   return (
     <View className="bg-black flex-1">
-      <View className="items-center justify-center -mt-14">
-        <Image
-          source={{
-            uri: data?.avatar?.url
-              ? data?.avatar?.url
-              : 'https://images.unsplash.com/photo-1570498839593-e565b39455fc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGZvb3RiYWxsJTIwcGxheWVyJTIwaW1hZ2VzfGVufDB8fDB8fHww',
-          }}
-          className="w-24 h-24 rounded-full mt-40"
-        />
+      {data ? (
+        <View className="items-center justify-center mt-14">
+          <Image
+            source={{
+              uri: data?.avatar?.url
+                ? data?.avatar?.url
+                : 'https://images.unsplash.com/photo-1570498839593-e565b39455fc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGZvb3RiYWxsJTIwcGxheWVyJTIwaW1hZ2VzfGVufDB8fDB8fHww',
+            }}
+            className="w-24 h-24 rounded-full mt-40"
+          />
 
-        <Text className=" text-gray-100 font-[Poppins-Medium]  text-md mt-3 ">
-          {data?.name}
-        </Text>
-        <View className="flex-row items-center justify-center gap-2 mb-2">
-          <Text className=" text-white font-[Poppins-Regular] text-sm">
-            {data?.email}
+          <Text className=" text-gray-100 font-[Poppins-Medium]  text-md mt-3 ">
+            {data?.name}
           </Text>
+          <View className="flex-row items-center justify-center gap-2 mb-2">
+            <Text className=" text-white font-[Poppins-Regular] text-sm">
+              {data?.email}
+            </Text>
+          </View>
         </View>
-      </View>
+      ) : (
+        <>
+
+        
+          <ActivityIndicator size={'large'} color={'white'} />
+        </>
+      )}
+
       <TouchableOpacity
         onPress={logout}
         activeOpacity={0.7}

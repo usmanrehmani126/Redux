@@ -10,10 +10,10 @@ import {
   ActivityIndicator,
   Alert,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import ImageCropPicker from 'react-native-image-crop-picker';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {registerUser} from '../../redux/actions/userActions';
 import validations from '../../utlis/validations';
 
@@ -25,7 +25,7 @@ const RegisterScreen = () => {
   const [avatar, setAvatar] = useState('');
   const [showPassword, setshowPassword] = useState(true);
   const dispatch = useDispatch();
-  const {loading} = useSelector((state: any) => state.user);
+  const [loading, setLoading] = useState(false);
 
   const uploadImage = () => {
     ImageCropPicker.openPicker({
@@ -58,8 +58,11 @@ const RegisterScreen = () => {
       if (!avatar) {
         Alert.alert('please upload photo');
       } else {
+        setLoading(true);
         const formData = {email, password, name, avatar};
         registerUser(formData)(dispatch);
+        navigation.navigate('Home');
+        setLoading(false);
       }
     }
   };

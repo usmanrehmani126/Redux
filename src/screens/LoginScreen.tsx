@@ -18,10 +18,10 @@ const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setshowPassword] = useState(true);
+  const [loading, setLoading] = useState(false)
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const { loading } = useSelector((state: any) => state.user);
   const isValidData = () => {
     const error = validations({
       email,
@@ -35,11 +35,13 @@ const LoginScreen = () => {
   };
 
   const loginFunc = () => {
+    setLoading(true)
     const checkValiFields = isValidData();
     if (checkValiFields) {
       dispatch(loginUser(email, password));
       navigation.navigate('Home');
     }
+    setLoading(false)
   };
   return (
     <View className="flex-[1] items-center justify-center bg-black">
