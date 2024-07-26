@@ -18,7 +18,6 @@ export const registerUser =
         payload: data.user,
       });
       await AsyncStorage.setItem('userData', JSON.stringify(data.user));
-      console.log('>>>>>>>>>User Data', data.user);
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +46,6 @@ export const loginUser =
         payload: data.user,
       });
       await AsyncStorage.setItem('userData', JSON.stringify(data.user));
-      console.log('>>>>>>>>>User Data', data.user);
     } catch (error: any) {
       console.log(error.message);
     }

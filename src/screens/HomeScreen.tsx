@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState('');
   const navigation=useNavigation()
  
   useEffect(() => {
@@ -19,11 +19,11 @@ const HomeScreen = () => {
 
     fetchData();
   }, []);
-
   const logout = async () => {
     await AsyncStorage.removeItem('userData');
     navigation.navigate("Login")
   };
+  console.log(">>>>>>>>User Data",data)
   return (
     <View className="bg-black flex-1">
       <View className="items-center justify-center -mt-14">
