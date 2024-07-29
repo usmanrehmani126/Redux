@@ -8,17 +8,17 @@ import {
   ActivityIndicator,
   Alert,
 } from 'react-native';
-import { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
+import {useEffect, useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
 import validations from '../../utlis/validations';
-import { loginUser } from '../../redux/actions/userActions';
+import {loginUser} from '../../redux/actions/userActions';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setshowPassword] = useState(true);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -35,13 +35,13 @@ const LoginScreen = () => {
   };
 
   const loginFunc = () => {
-    setLoading(true)
+    setLoading(true);
     const checkValiFields = isValidData();
     if (checkValiFields) {
       dispatch(loginUser(email, password));
       navigation.navigate('Home');
     }
-    setLoading(false)
+    setLoading(false);
   };
   return (
     <View className="flex-[1] items-center justify-center bg-black">
