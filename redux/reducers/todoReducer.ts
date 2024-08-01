@@ -8,6 +8,7 @@ const todoSlice = createSlice({
   initialState: {
     isLoading: false,
     data: [],
+    isError:false
   },
   extraReducers: builder => {
     builder.addCase(fetchTodos.pending, (state, action) => {
@@ -20,7 +21,7 @@ const todoSlice = createSlice({
     builder.addCase(fetchTodos.rejected, (state, action) => {
       state.isLoading = false;
       console.log('Error', action.payload);
-      state.data = action.payload;
+      state.isError = true;
     });
   },
 });
