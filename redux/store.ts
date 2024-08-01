@@ -1,15 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit';
 // import {userReducer} from './reducers/userReducer';
-import cartReducer from './reducers/cartReducer';
+// import cartReducer from './reducers/cartReducer';
+import todoReducer from './reducers/todoReducer';
 const store = configureStore({
   reducer: {
     // user: userReducer,
-    cart: cartReducer,
+    // cart: cartReducer,
+    todo: todoReducer,
   },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      immutableCheck: false,
-      serializableCheck: false,
-    }),
 });
 export default store;

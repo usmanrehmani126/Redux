@@ -5,7 +5,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // import LoginScreen from './src/screens/LoginScreen';
 import {Provider} from 'react-redux';
 import store from './redux/store';
-import CartScreen from './src/screens/CartScreen';
+// import CartScreen from './src/screens/CartScreen';
+import TodoScreen from './src/screens/TodoSCreen';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -14,7 +15,7 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{headerShown: false}}
-          initialRouteName="Cart"
+          initialRouteName="todo"
         >
           {/* <Login/SignUp with Redux Toolkit> */}
           {/* <Stack.Screen name="Register" component={RegisterScreen} />
@@ -23,9 +24,12 @@ const App = () => {
           {/* <Login/SignUp with Redux Toolkit> */}
 
           {/* <Shopping Cart with Redux Toolkit> */}
-          <Stack.Screen name="Cart" component={CartScreen} />
-
+          {/* <Stack.Screen name="Cart" component={CartScreen} /> */}
           {/* <Shopping Cart with Redux Toolkit> */}
+
+          {/* <API Call's Redux Toolkit Async Thunk Middleware> */}
+          <Stack.Screen name="todo" component={TodoScreen} /> 
+          {/* <API Call's Redux Toolkit Async Thunk Middleware> */}
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
